@@ -1,0 +1,27 @@
+<span class="titulo">LISTADO DE CLIENTES</span>
+<table class="table table-striped bg-white mt-4" *ngIf="listCliente.length > 0">
+    <thead>
+        <tr>
+            <th scope="col">Cedula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Correo</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of listCliente">
+            <td>{{ cliente.cedula }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.direccion }}</td>
+            <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.correo }}</td>
+            <td>
+                <i (click)="eliminarCliente(cliente._id)" class="fas fa-trash"></i>
+                <i [routerLink]="['/editar-cliente', cliente._id]" class="fas fa-edit"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h5 style="text-align: center" *ngIf="listCliente.length == 0">No hay clientes para mostrar</h5>
