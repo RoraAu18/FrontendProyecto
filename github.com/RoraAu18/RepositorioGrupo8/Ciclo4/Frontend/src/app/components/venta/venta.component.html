@@ -1,0 +1,143 @@
+<div class="page-content container bg-white">
+    <div class="page-header text-blue-d2">
+        <h1 class="page-title text-secondary-d1">
+            Factura #
+            <small class="page-info">
+                <i class="fa fa-angle-double-right text-80"></i>
+                001
+            </small>
+        </h1>
+
+        <div class="page-tools">
+            <div class="action-buttons"></div>
+        </div>
+    </div>
+
+    <div class="container px-0">
+        <div class="row mt-4">
+            <div class="col-12 col-lg-10 offset-lg-1">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center text-primary text-150">
+                            Tiendas La Generica
+                        </div>
+                    </div>
+                </div>
+                <hr class="row brc-default-l1 mx-n1 mb-4" />
+                <!-- columna izquierda -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>
+                            <span class="text-sm text-grey-m2 align-middle">Documento:</span>
+                            <select name="" id="" class="form-control" type="text" placeholder="Ingrese Documento"
+                                [(ngModel)]="venta.cliente">
+                                <option value="">Elija la cedula del cliente</option>
+                                <option *ngFor="let cliente of listClientes" value="">
+                                    {{ cliente.cedula }}
+                                    {{ cliente.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- columna derecha -->
+                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                        <hr class="d-sm-none" />
+                        <div class="text-grey-m2">
+                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                Ciudad
+                            </div>
+
+                            <div class="my-2"><i class="fa fa-circle text-primary text-xs mr-1"></i>
+                                <span class="text-600 text-90">Bogota D.C.</span>
+                            </div>
+
+                            <div class="my-2"><i class="fa fa-circle text-primary text-xs mr-1"></i>
+                                <span class="text-600 text-90">Fecha:</span> Dic 09, 2021
+                            </div>
+
+                            <div class="my-2"><i class="fa fa-circle text-primary text-xs mr-1"></i>
+                                <span class="text-600 text-90">Pago:</span> Pendiente
+                            </div>
+                        </div>
+                    </div>
+                    <!-- barra detalle compra encabezado-->
+                </div>
+
+                <div class="mt-4">
+                    <div class="row text-600 text-white bg-primary py-25">
+                        <div class="col-10">Por favor ingrese los datos de la venta a realizar:</div>
+                    </div>
+                    <!-- inputs que traen la info-->
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col-5">
+                                <span class="text-sm text-grey-m2 align-middle">Nombre del producto:</span>
+                                <select name="" id="" class="form-control" type="text" (change)="poner_precio()"
+                                    [(ngModel)]="venta.producto">
+                                    <option value="">Seleccionar</option>
+                                    <option *ngFor="let producto of listProductos"
+                                        value="{{producto._id}}-{{producto.precio_venta}}-{{producto.nombre_producto}}">
+                                        {{producto.nombre_producto}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <span class="text-sm text-grey-m2 align-middle">Cantidad:</span>
+                                <input type="number" class="form-control" placeholder="Cantidad"
+                                    [(ngModel)]="venta.cantidad">
+                            </div>
+                            <div class="col-4">
+                                <span class="text-sm text-grey-m2 align-middle">Total:</span>
+                                <input type="text" class="form-control" placeholder="Valor Total"
+                                    [(ngModel)]="venta.precio">
+                            </div>
+                        <!-- final de la factura donde estan las operaciones-->
+                        <div class="mt-4">
+                            <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+                                Esta factura discrimina las tarifas de la siguiente manera:
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        <div class="mt-4">
+            <div class="col-12">
+                <label for="">Listado de la venta!</label>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Venta</th>
+                            <th>Total Venta</th>
+                            <th>IVA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pr of productos_detalle; let i = index">
+                            <td>{{pr.producto_nombre}}</td>
+                            <td>{{pr.cantidad}}</td>
+                            <td>{{pr.precio}}</td>
+                            <td>{{pr.totalventa}}</td>
+                            <td>{{pr.totaliva}}</td>
+
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="5"></th>
+                            <th> Gran Total: {{total}}</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="form-group">
+                    <button class="btn btn-outline-primary" (click)="agregar()">Crear</button>
+                </div>
+                <footer> <br> </footer>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

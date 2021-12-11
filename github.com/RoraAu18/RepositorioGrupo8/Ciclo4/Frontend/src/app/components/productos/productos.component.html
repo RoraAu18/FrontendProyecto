@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-body text-center">
+        <div class="archivo-csv">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" name="File Upload" id="csvFileUpload"
+                    (change)="fileChangeListener($event)" accept=".csv" />
+            </div>
+            <label>
+                Quieres ver el listado de productos:
+            </label>
+            <select aria-placeholder="Parse headers?" [(ngModel)]="header">
+                <option [value]="true">Si</option>
+                <option [value]="false">No</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="csv-listado-productos mt-4">
+    <div class="card text-center">
+        <table class="table table-striped bg-white mt-4" *ngIf="listProducto.length > 0">
+            <thead>
+                <tr>
+                    <th>Código del producto</th>
+                    <th>Nombre del producto</th>
+                    <th>NIT del proveedor</th>
+                    <th>Precio de compra</th>
+                    <th>IVA compra</th>
+                    <th>Precio venta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let csvData of csvArchivo;let i = index;">
+                    <td>{{csvData.codigo_producto}}</td>
+                    <td>{{csvData.nombre_producto}}</td>
+                    <td>{{csvData.nitproveedor}}</td>
+                    <td>{{csvData.precio_compra}}</td>
+                    <td>{{csvData.ivacompra}}</td>
+                    <td>{{csvData.precio_venta}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
